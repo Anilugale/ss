@@ -1,40 +1,47 @@
 package com.superservices.model;
 
 import java.io.Serializable;
-
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import org.codehaus.jackson.annotate.JsonIgnore;
-
+import javax.persistence.Transient;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
-import org.codehaus.jackson.annotate.JsonProperty;
 
 @Entity
 @Table(name = "product")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Product implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue
-	@Column(name = "id")
-	private long id;
+    @Id
+    @GeneratedValue
+    @Column(name = "id")
+    public long id;
 
-	@Column(name = "name")
-	private String name;
+    @Column(name = "name")
+    private String name;
 
-	@Column(name = "code")
-	private String code;
+    @Column(name = "code")
+    private String code;
 
-	@Column(name = "short_desc")
-	private String shortDesc;
-        
-        @Column(name = "marchand_id")
-	private String marchandId;
+    @Column(name = "short_desc")
+    private String shortDesc;
+
+    @Column(name = "marchand_id")
+    private String marchandId;
+    
+      @Transient
+    List<Complent> complentList= new ArrayList<>();
+ 
+    public List<Complent> getComplentList() {
+        return complentList;
+    }
 
     public long getId() {
         return id;
@@ -76,7 +83,10 @@ public class Product implements Serializable {
         this.marchandId = marchandId;
     }
 
+    public void setComplent(List<Complent> complentList) {
+        
+        this.complentList = complentList;
+        
+    }
 
-       
-    
 }

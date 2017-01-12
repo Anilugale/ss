@@ -1,5 +1,6 @@
 package com.superservices.controller;
 
+import com.superservices.model.Complent;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -13,26 +14,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.superservices.model.Product;
-import com.superservices.services.ProductServices;
+import com.superservices.services.ComplentServices;
+import java.util.ArrayList;
+
 
 @Controller
-@RequestMapping("/product")
-public class ProductController {
+@RequestMapping("/complent")
+public class ComplentController {
 
 	@Autowired
-	ProductServices productServices;
-        
-        @Autowired
-	ComplentController complentServices;
+	       ComplentServices complentServices;
 
-	static final Logger logger = Logger.getLogger(ProductController.class);
+	static final Logger logger = Logger.getLogger(ComplentController.class);
 
 	@RequestMapping(value = "/create", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody
-	Status addEmployee(@RequestBody Product employee) {
+	Status addEmployee(@RequestBody Complent employee) {
 		try {
-			productServices.addEntity(employee);
+			complentServices.addEntity(employee);
 			return new Status(1, "product added Successfully !");
 		} catch (Exception e) {
 			 e.printStackTrace();
@@ -43,11 +42,10 @@ public class ProductController {
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public @ResponseBody
-	Product getEmployee(@PathVariable("id") long id) {
-		Product employee = null;
+	Complent getEmployee(@PathVariable("id") long id) {
+		Complent employee = null;
 		try {
-			employee = productServices.getEntityById(id);
-                        employee.setComplent(complentServices.getComplentByProductID(id));
+			employee = complentServices.getEntityById(id);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -57,11 +55,11 @@ public class ProductController {
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public @ResponseBody
-	List<Product> getEmployee() {
+	List<Complent> getEmployee() {
 
-		List<Product> employeeList = null;
+		List<Complent> employeeList = null;
 		try {
-			employeeList = productServices.getEntityList();
+			employeeList = complentServices.getEntityList();
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -75,13 +73,25 @@ public class ProductController {
 	Status deleteEmployee(@PathVariable("id") long id) {
 
 		try {
-			productServices.deleteEntity(id);
+			complentServices.deleteEntity(id);
 			return new Status(1, "Product deleted Successfully !");
 		} catch (Exception e) {
 			return new Status(0, e.toString());
 		}
 
 	}
+
+    List<Complent> getComplentByProductID(long id) {
+        List<Complent> employeeList = null;
+		try {
+			employeeList = complentServices.getComplentListByProductId(id);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return employeeList;
+    }
         
      
 }
