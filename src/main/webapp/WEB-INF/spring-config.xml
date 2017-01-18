@@ -26,6 +26,8 @@
 				<value>com.superservices.model.Customer</value>
                                 <value>com.superservices.model.Marchand</value>
                                  <value>com.superservices.model.Product</value>
+                                 <value>com.superservices.model.Complent</value>
+                                  <value>com.superservices.model.CustomerComplent</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -52,4 +54,10 @@
         
         <bean id="productDao" class="com.superservices.dao.ProductDaoImp"></bean>
 	<bean id="productServices" class="com.superservices.services.ProductServicesImpl"></bean>
+        
+        <bean id="complentDao" class="com.superservices.dao.ComplentDaoImpl"></bean>
+	<bean id="complentServices" class="com.superservices.services.ComplentServicesImpl"></bean>
+        
+        <bean id="customerComplentDao" class="com.superservices.dao.CustomerComplentDaoImpl"></bean>
+	<bean id="customerComplentServices" class="com.superservices.services.CustomerComplentServicesImpl"></bean>
 </beans>
