@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.superservices.dao.DataDao;
 import com.superservices.model.Customer;
+import com.superservices.model.Status;
 
 public class DataServicesImpl implements DataServices {
 
@@ -33,7 +34,7 @@ public class DataServicesImpl implements DataServices {
     }
 
     @Override
-    public String login(String username, String password) throws Exception {
+    public Status login(String username, String password) throws Exception {
         return dataDao.login(username, password);
     }
 

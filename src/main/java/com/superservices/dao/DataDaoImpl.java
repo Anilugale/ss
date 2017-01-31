@@ -8,6 +8,7 @@ import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.superservices.model.Customer;
 import com.superservices.model.Marchand;
+import com.superservices.model.Status;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 
@@ -67,24 +68,29 @@ public class DataDaoImpl implements DataDao {
 	}
         
     @Override
-    public String login(String username, String password) throws Exception {
+    public Status login(String username, String password) throws Exception {
          session = sessionFactory.openSession();
                    
+         Status status = new Status();
                 Criteria cr = session.createCriteria(Customer.class);
                 cr.add(Restrictions.eq("username", username));
                 Customer marchand = (Customer) cr.uniqueResult();
                 
                 if(marchand == null){
-                    return "user is not exist register";
+                    status.setMessage("user is not exist register");
+                      return status;
                 }
                 
                  if(marchand.getUsername().equals(username) && marchand.getPassword().equals(password)){
-                     return marchand.getId()+"";
+                     status.setData(marchand);
                  }else if(marchand.getUsername().equals(username)){
-                  return "password not correct!";
+                  status.setMessage("password not correct!");
                  }else{
-                  return "username password not correct!";
+                    status.setMessage("username password not correct!");
+
                  }
+                 
+                 return status;
     }
 
 }

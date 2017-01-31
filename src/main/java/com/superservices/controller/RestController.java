@@ -84,8 +84,7 @@ public class RestController {
 	Status login(@RequestBody Customer customer) {
 
 		try {
-			String result = dataServices.login(customer.getUsername(),customer.getPassword());
-			return new Status(1, result);
+			return dataServices.login(customer.getUsername(),customer.getPassword());
 		} catch (Exception e) {
                     e.printStackTrace();
 			return new Status(0, e.toString());
