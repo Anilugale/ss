@@ -29,8 +29,8 @@ public class RestController {
 	public @ResponseBody
 	Status addEmployee(@RequestBody Customer employee) {
 		try {
-			dataServices.addEntity(employee);
-			return new Status(1, "Employee added Successfully !");
+			Customer customer = dataServices.addEntity(employee);
+			return new Status(1, "Employee added Successfully !",customer);
 		} catch (Exception e) {
 			 e.printStackTrace();
 			return new Status(0, e.toString());

@@ -14,7 +14,7 @@ public class DataServicesImpl implements DataServices {
     DataDao dataDao;
 
     @Override
-    public boolean addEntity(Customer employee) throws Exception {
+    public Customer addEntity(Customer employee) throws Exception {
         return dataDao.addEntity(employee);
     }
 

@@ -49,16 +49,6 @@ public class ProductDaoImp implements ProductDao{
 		return product;
     }
 
-    @Override
-    public List<Product> getEntityList() throws Exception {
-                session = sessionFactory.openSession();
-		tx = session.beginTransaction();
-		List<Product> list = session.createCriteria(Product.class)
-				.list();
-		tx.commit();
-		session.close();
-		return list;
-    }
 
     @Override
     public boolean deleteEntity(long id) throws Exception {
@@ -69,6 +59,19 @@ public class ProductDaoImp implements ProductDao{
 		session.delete(o);
 		tx.commit();
 		return false;
+    }
+
+    @Override
+    public List<Product> getProductList(String marchandId) throws Exception {
+                session = sessionFactory.openSession();
+		tx = session.beginTransaction();
+		List<Product> list = session.createCriteria(Product.class)
+                        .add(Restrictions.eq("marchandId", marchandId))
+				.list();
+                
+		tx.commit();
+		session.close();
+		return list;
     }
 
    

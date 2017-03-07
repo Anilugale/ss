@@ -21,7 +21,7 @@ public class DataDaoImpl implements DataDao {
 	Transaction tx = null;
 
 	@Override
-	public boolean addEntity(Customer employee) throws Exception {
+	public Customer addEntity(Customer employee) throws Exception {
 
 		session = sessionFactory.openSession();
 		tx = session.beginTransaction();
@@ -29,7 +29,7 @@ public class DataDaoImpl implements DataDao {
 		tx.commit();
 		session.close();
 
-		return false;
+		return employee;
 	}
 
 	@Override

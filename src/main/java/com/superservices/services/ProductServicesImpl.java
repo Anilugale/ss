@@ -23,8 +23,8 @@ public class ProductServicesImpl implements ProductServices {
 	}
 
 	@Override
-	public List<Product> getEntityList() throws Exception {
-		return productDao.getEntityList();
+	public List<Product> getProductList(String marchandId) throws Exception {
+		return productDao.getProductList(marchandId);
 	}
 
 	@Override

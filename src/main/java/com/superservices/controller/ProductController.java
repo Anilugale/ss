@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.superservices.model.Product;
 import com.superservices.services.ProductServices;
+import java.util.ArrayList;
 
 @Controller
 @RequestMapping("/product")
@@ -55,13 +56,13 @@ public class ProductController {
 		return employee;
 	}
 
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	@RequestMapping(value = "/marchand/{id}", method = RequestMethod.GET)
 	public @ResponseBody
-	List<Product> getEmployee() {
+	List<Product> getMarchantProductList(@PathVariable("id")String marchandID) {
 
-		List<Product> employeeList = null;
+		List<Product> employeeList = new ArrayList<>();
 		try {
-			employeeList = productServices.getEntityList();
+			employeeList = productServices.getProductList(marchandID);
 
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -13,7 +13,7 @@ public class CustomerComplentServicesImpl implements CustomerComplentServices {
 	CustomerComplentDao customerComplentDao;
 	
 	@Override
-	public boolean addEntity(CustomerComplent employee) throws Exception {
+	public CustomerComplent addEntity(CustomerComplent employee) throws Exception {
 		return customerComplentDao.addEntity(employee);
 	}
 

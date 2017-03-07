@@ -18,7 +18,7 @@ public class CustomerComplentDaoImpl implements CustomerComplentDao {
 	Transaction tx = null;
 
 	@Override
-	public boolean addEntity(CustomerComplent employee) throws Exception {
+	public CustomerComplent addEntity(CustomerComplent employee) throws Exception {
 
 		session = sessionFactory.openSession();
 		tx = session.beginTransaction();
@@ -26,7 +26,7 @@ public class CustomerComplentDaoImpl implements CustomerComplentDao {
 		tx.commit();
 		session.close();
 
-		return false;
+		return employee;
 	}
 
 	@Override

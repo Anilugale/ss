@@ -31,8 +31,8 @@ public class CustomerComplentController {
 	public @ResponseBody
 	Status addEmployee(@RequestBody CustomerComplent employee) {
 		try {
-			customerComplentServices.addEntity(employee);
-			return new Status(1, "product added Successfully !");
+			CustomerComplent newComplete =customerComplentServices.addEntity(employee);
+			return new Status(1, "product added Successfully !",newComplete);
 		} catch (Exception e) {
 			 e.printStackTrace();
 			return new Status(0, e.toString());

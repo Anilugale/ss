@@ -21,6 +21,12 @@ public class Status {
 		this.code = code;
 		this.message = message;
 	}
+    
+      public Status(int code, String message,Object obj) {
+		this.code = code;
+		this.message = message;
+                this.data = obj;
+	}
 
 	public int getCode() {
 		return code;
